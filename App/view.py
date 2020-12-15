@@ -50,7 +50,7 @@ operación seleccionada.
 
 initialStation = None
 recursionLimit = 20000
-
+filename = "taxi-trips-wrvz-psew-subset-small.csv"
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
@@ -79,7 +79,14 @@ while True:
         cont = controller.init()
     elif int(opciones[0]) == 2:
         print("\nCargando información de accidentes ....")
-        controller.loadTrips(cont)
+        archivo = input("Ingrese la palabra: small, medium o large, para determinar el archivo a cargar: ")
+        if archivo == "small":
+            filename = "taxi-trips-wrvz-psew-subset-small.csv"
+        if archivo == "medium":
+            filename = "taxi-trips-wrvz-psew-subset-medium.csv"
+        if archivo == "large":
+            filename = "taxi-trips-wrvz-psew-subset-large.csv"
+        controller.loadTrips(cont, filename)
         sys.setrecursionlimit(recursionLimit)
     elif int(opciones[0]) == 3:
         top = int(input("Ingrese la cantidad de compañías mostradas en el ranking: "))
@@ -159,3 +166,4 @@ while True:
     else:
         sys.exit(0)
 sys.exit(0)
+
