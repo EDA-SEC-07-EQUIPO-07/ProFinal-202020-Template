@@ -156,7 +156,7 @@ def pathTo(search, vertex):
     try:
         if hasPathTo(search, vertex) is False:
             return None
-        path = stack.newStack()
+        path = stack.newStack("ARRAY_LIST")
         while vertex != search['source']:
             visited_v = map.get(search['visited'], vertex)['value']
             edge = visited_v['edgeTo']
