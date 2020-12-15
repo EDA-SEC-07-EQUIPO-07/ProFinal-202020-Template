@@ -49,12 +49,12 @@ def init():
 #  Funciones para la carga de datos y almacenamiento
 #  de datos en los modelos
 # ___________________________________________________
-def loadTrips(Taxis):
-    for filename in os.listdir(cf.data_dir):
-        if filename.endswith('.csv'):
-            print('Cargando archivo: ' + filename)
-            loadFile(Taxis, filename)
-    return Taxis
+def loadTrips(Taxis,filename):
+    print('Cargando archivo: ' + filename)
+    retorno = loadFile(Taxis, filename)
+    if retorno is not None:
+        print("archivo cargado")
+    return retorno
 def loadFile(Taxis, tripfile):
     tripfile = cf.data_dir + tripfile
     input_file = csv.DictReader(open(tripfile, encoding="utf-8"),
@@ -85,3 +85,4 @@ def MENOR_CA(Taxis, initCA, destCA, horaIni, horaFin):
     horaI = datetime.datetime.strptime(horaIni, "%H:%M")
     horaF = datetime.datetime.strptime(horaFin, "%H:%M")
     return model.MENOR_CA(Taxis, initCA, destCA, horaI.time(), horaF.time())
+
