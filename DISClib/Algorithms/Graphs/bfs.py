@@ -34,7 +34,7 @@ from DISClib.Utils import error as error
 assert config
 
 
-def BreadhtFisrtSearch(graph, source):
+def BreadthFisrtSearch(graph, source):
     """
     Genera un recorrido BFS sobre el grafo graph
     Args:
@@ -138,7 +138,7 @@ def pathTo(search, vertex):
     try:
         if hasPathTo(search, vertex) is False:
             return None
-        path = stack.newStack()
+        path = stack.newStack("ARRAY_LIST")
         while vertex != search['source']:
             stack.push(path, vertex)
             vertex = map.get(search['visited'],
@@ -147,3 +147,4 @@ def pathTo(search, vertex):
         return path
     except Exception as exp:
         error.reraise(exp, 'bfs:pathto')
+    
