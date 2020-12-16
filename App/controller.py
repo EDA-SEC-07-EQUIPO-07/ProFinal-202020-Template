@@ -74,15 +74,7 @@ def Cantidad_compañias(Taxis):
     return model.Cantidad_compañias(Taxis)
 def TOP_TAXI(Taxis, top):
     return model.TOP_TAXI(Taxis, top)
-def PUNTOS_IND(Taxis, date, top):
-    fecha = datetime.datetime.strptime(date, '%Y-%m-%d')
-    return model.PUNTOS_IND(Taxis, fecha.date(), top)
-def topPuntosTaxiMultiple(Taxis, dateIni, dateFin, top):
-    fechaIni = datetime.datetime.strptime(dateIni, '%Y-%m-%d')
-    fechaFin = datetime.datetime.strptime(dateFin, '%Y-%m-%d')
-    return model.topPuntosTaxiMultiple(Taxis, fechaIni.date(), fechaFin.date(), top)
 def MENOR_CA(Taxis, initCA, destCA, horaIni, horaFin):
     horaI = datetime.datetime.strptime(horaIni, "%H:%M")
     horaF = datetime.datetime.strptime(horaFin, "%H:%M")
     return model.MENOR_CA(Taxis, initCA, destCA, horaI.time(), horaF.time())
-
