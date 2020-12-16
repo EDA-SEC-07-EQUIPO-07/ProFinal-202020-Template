@@ -76,13 +76,6 @@ def maxDicc(diccionario: dict):
     Max = str(llaves[valores.index(mayor)])
     return Max
 
-def minDicc(diccionario: dict):
-    llaves = list(diccionario.keys())
-    valores = list(diccionario.values())
-    menor = max(valores)
-    Min = str(llaves[valores.index(menor)])
-    return Min
-
 def Taxi_Por_Fecha(taxitrip):
     tripstartdate = taxitrip['trip_start_timestamp']
     taxitripdatetime = datetime.datetime.strptime(tripstartdate, '%Y-%m-%dT%H:%M:%S.%f')
