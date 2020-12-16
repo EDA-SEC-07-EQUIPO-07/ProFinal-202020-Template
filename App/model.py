@@ -236,72 +236,14 @@ def TOP_TAXI(Taxis, top):
         resultado1 = maxDicc(dicc1)
         resultado2 = maxDicc(dicc2)
         inp1 = {resultado1: dicc1[resultado1]}
-        inp2 = {resultado2: dicc2[resultado1]}
+        inp2 = {resultado2: dicc2[resultado2]}
         lt.addLast(topTaxis, inp1)
         lt.addLast(topServices, inp2)
         dicc1.pop(resultado1)
         dicc2.pop(resultado2)
         num +=1
     return topTaxis, topServices
-def PUNTOS_IND(Taxis, fecha, top):
-    dateanalyzed = om.get(['fechas'], fecha)
-    if dateanalyzed["key"] is not None:
-        entry = dateanalyzed["value"]["taxis"]
-        llaves = m.keySet(entry)
-        iterador = it.newIterator(llaves)
-        dicc = {}
-        num = 1
-        topTaxis = lt.newList("ARRAY_LIST")
-        while it.hasNext(iterador):
-            taxi = it.next(iterador)
-            valor = m.get(entry, taxi)
-            data = valor["value"]
-            if data["elements"][1] == 0:
-                puntos = 0
-            else:
-                puntos = (data["elements"][0]/data["elements"][1])*data["elements"][2]
-            dicc[taxi] = puntos
-        while num <= top:
-            resultado = maxDicc(dicc)
-            inp = {resultado: dicc[resultado]}
-            lt.addLast(topTaxis, inp)
-            dicc.pop(resultado)
-            num += 1
-        return topTaxis
-    else:
-        return None
-def topPuntosTaxiMultiple(Taxis, dateIni, dateFin, top):
-    dateanalyzed1 = om.get(Taxis['fechas'], dateIni)
-    dateanalyzed2 = om.get(Taxis['fechas'], dateFin)
-    if dateanalyzed1["key"] is not None and dateanalyzed2["key"]:
-        valor = om.keys(Taxis["fechas"], dateIni, dateFin)
-        iterador = it.newIterator(valor)
-        taxis = {}
-        topRangoTaxis = lt.newList("ARRAY_LIST")
-        num = 1
-        while it.hasNext(iterador):
-            fecha = it.next(iterador)
-            lista = PUNTOS_IND(Taxis, fecha, top)
-            iterador2 = it.newIterator(lista)
-            while it.hasNext(iterador2):
-                taxi = it.next(iterador2)
-                if str(taxi.keys()) in str(taxis.keys()):
-                    taxis[str(taxi.keys())] += float(taxi.values())
-                else:
-                    taxis.update(taxi)
-        while num <= top:
-            resultado = maxDicc(taxis)
-            inp = {resultado: taxis[resultado]}
-            lt.addLast(topRangoTaxis, inp)
-            taxis.pop(resultado)
-            num += 1
-        return topRangoTaxis
-    else:
-        return None
-def totalEdges(Taxis):
-    return gr.numEdges(Taxis['communityAreas'])
-def Estaciones_totales(Taxis):
-    return gr.numVertices(Taxis['communityAreas'])
+
 def Caminos_menor_costo(Taxis, initialStation):
     if gr.containsVertex(Taxis["communityAreas"], initialStation) == True:
         Taxis['paths'] = djk.Dijkstra(Taxis['communityAreas'], initialStation)
