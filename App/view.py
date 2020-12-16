@@ -109,39 +109,7 @@ while True:
             service = it.next(iterador2)
             print("{0}. {1} con {2} servicios.".format(numero, list(service.keys())[0], list(service.values())[0]))
             numero += 1
-    elif int(opciones[0]) == 4:
-        OtrasOpciones()
-        Rangos = input('Seleccione una opción para continuar\n>')
-        if Rangos == "1":
-            fecha = input("Entre la fecha(Formato: YYYY-MM-DD): ")
-            top = int(input("Ingrese la cantidad de taxis mostrados en el ranking: "))
-            print("\nBuscando taxis dentro de la fecha {0}".format(fecha))
-            res = controller.PUNTOS_IND(cont, fecha, top)
-            if res is not None:
-                iterador1 = it.newIterator(res)
-                numero = 1
-                while it.hasNext(iterador1):
-                    taxi = it.next(iterador1)
-                    print("{0}. Taxi ID: {1}\nCantidad de puntos: {2}\n".format(numero, list(taxi.keys())[0], list(taxi.values())[0]))
-                    numero += 1
-            else:
-                print("La fecha ingresada no existe.")
-        elif Rangos == "2":
-            Inicial = input("Entre la fecha inicial (Formato: YYYY-MM-DD): ")
-            Final = input("Entre la fecha final (Formato: YYYY-MM-DD): ")
-            top = int(input("Ingrese la cantidad de taxis mostrados en el ranking: "))
-            print("\nBuscando taxis dentro de la fechas {0} y {1}".format(Inicial, Final))
-            res = controller.topPuntosTaxiMultiple(cont, Inicial, Final, top)
-            if res is not None:
-                iterador1 = it.newIterator(res)
-                numero = 1
-                while it.hasNext(iterador1):
-                    taxi = it.next(iterador1)
-                    print("{0}. Taxi ID: {1}\nTuvo una cantidad de puntos de : {2}\n".format(numero, list(taxi.keys())[0], list(taxi.values())[0]))
-                    numero += 1
-            else:
-                print("Alguna de las fechas no existen.")
-
+            
     elif int(opciones[0]) == 5:
         CAOrigen = int(input("Ingrese la 'Community Area' de origen: "))
         CADest = int(input("Ingrese la 'Community Area' de destino: "))
@@ -166,4 +134,3 @@ while True:
     else:
         sys.exit(0)
 sys.exit(0)
-
